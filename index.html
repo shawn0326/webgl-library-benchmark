@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebGL Library Benchmark</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>WebGL Library Benchmark</h1>
+      <div id="test-list-container"></div>
+    </div>
+    <script type="module">
+      const tests = [
+        {
+          category: "Boxes Rendering Test",
+          options: { count: 10000, material: 0 },
+          cases: [
+            { name: "t3d", file: "t3d-boxes" },
+            { name: "three.js", file: "three-boxes" },
+            { name: "three.js(webgpu)", file: "three-gpu-boxes" },
+            { name: "babylon.js", file: "babylon-boxes" },
+            { name: "babylon.js(webgpu)", file: "babylon-gpu-boxes" },
+          ],
+        },
+        {
+          category: "Boxes Rendering Test (Different Materials)",
+          options: { count: 8000, material: 1 },
+          cases: [
+            { name: "t3d", file: "t3d-boxes" },
+            { name: "three.js", file: "three-boxes" },
+            { name: "three.js(webgpu)", file: "three-gpu-boxes" },
+            { name: "babylon.js", file: "babylon-boxes" },
+            { name: "babylon.js(webgpu)", file: "babylon-gpu-boxes" },
+          ],
+        },
+      ];
+
+      const container = document.getElementById("test-list-container");
+      const mainList = document.createElement("ul");
+
+      tests.forEach((testGroup) => {
+        const categoryItem = document.createElement("li");
+
+        const categoryTitle = document.createElement("h2");
+        categoryTitle.textContent = testGroup.category;
+        categoryItem.appendChild(categoryTitle);
+
+        const caseList = document.createElement("ul");
+
+        testGroup.cases.forEach((testCase) => {
+          const caseItem = document.createElement("li");
+          const link = document.createElement("a");
+
+          const options = testGroup.options;
+          const optionsString = Object.entries(options)
+            .map(([key, value]) => `${key}=${value}`)
+            .join("&");
+
+          link.href = `template.html?test=${testCase.file}&${optionsString}`;
+          link.textContent = testCase.name;
+          link.target = "_blank";
+
+          caseItem.appendChild(link);
+          caseList.appendChild(caseItem);
+        });
+
+        categoryItem.appendChild(caseList);
+        mainList.appendChild(categoryItem);
+      });
+
+      container.appendChild(mainList);
+    </script>
+  </body>
+</html>

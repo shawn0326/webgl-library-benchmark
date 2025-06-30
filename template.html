@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebGL Benchmark</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "t3d": "/node_modules/t3d/build/t3d.module.js",
+          "t3d/addons/": "/node_modules/t3d/examples/jsm/",
+          "three": "/node_modules/three/build/three.module.js",
+          "three/webgpu": "/node_modules/three/build/three.webgpu.js",
+          "three/addons/": "/node_modules/three/examples/jsm/",
+          "@babylonjs/": "/node_modules/@babylonjs/",
+          "stats.js": "/node_modules/stats.js/src/Stats.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <script type="module">
+      const urlParams = new URLSearchParams(window.location.search);
+      const testName = urlParams.get("test");
+      if (testName) {
+        document.title = `${testName.replace(/-/g, " ")} Test`;
+        const script = document.createElement("script");
+        script.type = "module";
+        script.src = `./src/${testName}.js`;
+        document.body.appendChild(script);
+      } else {
+        console.error(
+          "No test specified in URL parameters. Please add ?test=your-test-name to the URL."
+        );
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "webgl-library-benchmark",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "servez": "^2.3.0"
+  },
+  "dependencies": {
+    "@babylonjs/core": "^8.14.0",
+    "stats.js": "^0.17.0",
+    "t3d": "^0.4.3",
+    "three": "^0.177.0"
+  },
+  "scripts": {
+    "start": "servez --ssl"
+  }
+}
