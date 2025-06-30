@@ -22,6 +22,8 @@ This project provides a series of standardized rendering tests to evaluate the p
 
 Detailed test results are documented in [**BENCHMARK.md**](./BENCHMARK.md).
 
+[Online tests](https://shawn0326.github.io/webgl-library-benchmark/)
+
 ## Disclaimer
 
 **Please note:** These tests are only single-item tests under limited conditions. The results are for reference only and do not represent the performance level of the engines in actual, complex projects.
